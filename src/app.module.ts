@@ -15,7 +15,8 @@ import config from './config';
       password: config.DB_PASSWORD,
       database: config.DB_DATABASE,
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
+      entities: [__dirname + '/**/*.entity{.ts,.js}']
     }),
     ProductModule],
   controllers: [AppController],
