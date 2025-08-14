@@ -9,16 +9,16 @@ import config from './config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: config.DB_HOST,
-      port: config.DB_PORT,
-      username: config.DB_USERNAME,
-      password: config.DB_PASSWORD,
-      database: config.DB_DATABASE,
-      autoLoadEntities: true,
-      synchronize: true,
-      entities: [__dirname + '/**/*.entity{.ts,.js}']
+      url: process.env.DATABASE_URL,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: process.env.NODE_ENV !== 'production',
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: false }
+          : false,
     }),
-    ProductModule],
+    ProductModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
