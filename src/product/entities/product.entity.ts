@@ -20,9 +20,9 @@ export class ProductEntity {
     @Column('decimal', { precision: 10, scale: 2 })
     price: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({default: () => 'CURRENT_TIMESTAMP'})
     updatedAt: Date;
 }
