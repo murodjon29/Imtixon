@@ -9,7 +9,12 @@ import config from './config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      // url: process.env.DATABASE_URL,
+      host: config.DB_HOST,
+      port: config.DB_PORT,
+      username: config.DB_USERNAME,
+      password: config.DB_PASSWORD,
+      database: config.DB_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: process.env.NODE_ENV !== 'production',
       ssl:
